@@ -1,20 +1,72 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container">
+    <div class="row col-md-12 col-md-offset-2 custyle">
+        <table class="table table-strip custab">
+            <thead>
+                <button class="btn btn-primary btn-xs pull-left" (click)="adicionarPessoa()">Adicionar Pessoas</button>
+                <button class="btn btn-secondary" (click)="cancelPessoa()">Cancelar</button>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Idade</th>
+                    <th class="text-center">Ação</th>
+                </tr>
+            </thead>
+            <tr *ngFor="let pessoa of pessoaLista">
+                <td>{{pessoa.id}}</td>
+                <td>{{pessoa.nome}}</td>
+                <td>{{pessoa.email}}</td>
+                <td>{{pessoa.idade}}</td>
+                <td class="text-center"><button (click)="editarFormulario(pessoa)" class="btn btn-info btn-xs">Editar</button></td>
+                <td class="text-center"><button (click)="deletarPessoa(pessoa.id)" class="btn btn-danger btn-xs">Remover</button></td> 
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="mostrarFormulario">
+    <h3>Adicionar Pessoas</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group py-1">
+                <input type="text" class="form-control" [(ngModel)]="id" placeholder="id">
+            </div>
+            <div class="form-group py-1">
+                <input type="text" class="form-control" [(ngModel)]="nome" placeholder="nome">
+            </div>
+            <div class="form-group py-1">
+                <input type="text" class="form-control" [(ngModel)]="email" placeholder="email">
+            </div>
+            <div class="form-group py-1">
+                <input type="text" class="form-control" [(ngModel)]="idade" placeholder="idade">
+            </div>
+            <div class="form-group py-1">
+                <input class="btn btn-success" value="salvar" (click)="salvar()">
+            </div>
+        </div>
+    </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<div>
+    {{nomeCurso | uppercase }}
+    <h1>Datas Pipe</h1>
+    {{data | date}}
+    <h1>Datas - formatado Pipe</h1>
+    {{data | date:"dd/MM/yyyy"}}
+    <h1>Datas - fullDate Pipe</h1>
+    {{data | date:"fullDate"}}
+    <h1>Pipe encadedos</h1>
+    {{data | date | uppercase}}
+    <h1>Time Pipe</h1>
+    {{data | date:'shortTime'}}
+    <h1>Moedas Pipe</h1>
+<b>{{2500.30 | currency:"BRL"}}</b>
+<h1>Decimal Pipe</h1>
+{{123.4567890 | number:'3.4-4'}}
+<h1>Percentual Pipe</h1>
+{{00.54565 | percent}}
+<h1>Eventos</h1>
+<b>{{data | date:formato}}</b><br>
+<button (click)="alterarFormato()">Alterar</button>
+<h1>Intervalo Pipe</h1>
+{{mes | slice:1:4}}
+<h1>Personalizado Pipe</h1>
+{{raiz | pipe}}
+</div>
